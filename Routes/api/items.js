@@ -21,7 +21,12 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     const newItem = new Item({
         first_name: req.body.first_name,
-        last_name: req.body.last_name
+        last_name: req.body.last_name,
+        email_name: req.body.email_name,
+        phone_number: req.body.phone_number,
+        outfit_changes: req.body.outfit_changes,
+        photoshoot_type: req.body.photoshoot_type,
+        location: req.body.location
     });
 
     newItem.save()
