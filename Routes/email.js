@@ -17,11 +17,12 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     console.log("an attemp is made");
-    mailCustomer().catch(console.error);
+    mailCustomer(req.body.email_name).catch(console.error);
     mailAdmin().catch(console.error);
 })
 
-async function mailCustomer(){
+async function mailCustomer(email){
+    console.log(email)
     let transporter = nodemailer.createTransport({
         service: "gmail",
         host: 'smtp.google.com',
@@ -35,7 +36,7 @@ async function mailCustomer(){
     // send mail with defined transport object
     let info = await transporter.sendMail({
         from: '"nodemailer contact" <roscoefloraservicer@gmail.com>', // sender address
-        to: 'jtsnwn@mail.umsl.edu',//  , baz@example.com',  list of receivers
+        to: email,         //  , baz@example.com',  list of receivers
         subject: 'appointment request', // Subject line
         text: 'Hello world?', // plain text body
         html: userbody// html body
