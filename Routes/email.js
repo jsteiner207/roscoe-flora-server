@@ -5,7 +5,7 @@ const nodemailer = require('nodemailer')
 const router = express.Router();
 
 const adminbody = `
-    <h1>a new email has been sent</h1>
+    <h1>a new email has been sent my guy</h1>
     <P>this is used for the admin account</p>`;
 
 const userbody = `
