@@ -1,0 +1,5 @@
+This is a list of bigs discovered
+-----------------------------------
+- if an email doesn't exist and an appointment is submitted, an email will still go out to the admin
+- duplicate emails are sent out when an appointment is made
+- if we try to retrieve an appointment id right after a we submit a retrieved id, it is very slow

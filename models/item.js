@@ -24,6 +24,10 @@ const ItemSchema = new Schema({
     location: {
         type: String,
         required: false},
+    appointment_id: {
+        type: String,
+        required: false
+    },
     date: {
         type: Date,
         default: Date.now}

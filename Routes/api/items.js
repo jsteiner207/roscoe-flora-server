@@ -14,6 +14,20 @@ router.get('/', (req, res) => {
         .then(items => res.json(items));
 });
 
+//this is used to search for an appointment id and sends the data for that appointment back to the appointment page
+router.get('/:appointmentid', (req, res) => {
+    console.log(req.params.appointmentid)
+    Item.findOne({appointment_id : req.params.appointmentid})
+        .then(items => res.json(items));
+});
+
+router.put('/:appointmentid', (req, res) => {
+    Item.findOneAndUpdate({appointment_id : req.params.appointmentid}, req.body)
+        .then( () => Item.findOne({appointment_id : req.params.appointmentid})
+            .then(console.log(req.body)));
+    console.log("the dead is done");
+    });
+
 // @route   POST api/items
 // @desc    Create A Item
 // @access  Public
@@ -26,7 +40,8 @@ router.post('/', (req, res) => {
         phone_number: req.body.phone_number,
         outfit_changes: req.body.outfit_changes,
         photoshoot_type: req.body.photoshoot_type,
-        location: req.body.location
+        location: req.body.location,
+        appointment_id: req.body.appointment_id
     });
 
     newItem.save()

@@ -4,12 +4,13 @@ const nodemailer = require('nodemailer')
 
 const router = express.Router();
 
+
+
 const adminbody = `
     <h1>a new email has been sent my guy</h1>
     <P>this is used for the admin account</p>`;
 
-const userbody = `
-    <h1>this is a new email</h1>`;
+
 
 router.get('/', (req, res) => {
     res.send('email demo');
@@ -17,12 +18,16 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     console.log("an attemp is made");
-    mailCustomer(req.body.email_name).catch(console.error);
+    mailCustomer(req).catch(console.error);
     mailAdmin().catch(console.error);
 })
 
-async function mailCustomer(email){
-    console.log(email)
+async function mailCustomer(req){
+    
+
+    let userbody = `
+    <h1>thanks for choosing roscoeflora, your appointment id is ${req.body.appointment_id}</h1>`;
+
     let transporter = nodemailer.createTransport({
         service: "gmail",
         host: 'smtp.google.com',
@@ -36,7 +41,7 @@ async function mailCustomer(email){
     // send mail with defined transport object
     let info = await transporter.sendMail({
         from: '"nodemailer contact" <roscoefloraservicer@gmail.com>', // sender address
-        to: email,         //  , baz@example.com',  list of receivers
+        to: req.body.email_name,         //  , baz@example.com',  list of receivers
         subject: 'appointment request', // Subject line
         text: 'Hello world?', // plain text body
         html: userbody// html body
