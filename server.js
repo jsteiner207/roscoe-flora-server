@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
-const items = require("./routes/api/items");
 const email = require("./routes/email");
+const items = require("./routes/api/items");
 
 const app = express();
 app.use(cors());
