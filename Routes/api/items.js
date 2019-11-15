@@ -16,7 +16,6 @@ router.get("/", (req, res) => {
 
 //this is used to search for an appointment id and sends the data for that appointment back to the appointment page
 router.get("/:appointmentid", (req, res) => {
-  console.log(req.params.appointmentid);
   Item.findOne({ appointment_id: req.params.appointmentid }).then(items =>
     res.json(items)
   );

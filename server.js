@@ -5,6 +5,7 @@ const cors = require("cors");
 
 const email = require("./Routes/email");
 const items = require("./Routes/api/items");
+const accounts = require("./Routes/api/accounts");
 
 const app = express();
 app.use(cors());
@@ -23,6 +24,7 @@ mongoose
 const port = process.env.PORT || 5000;
 
 app.use("/api/items", items);
+app.use("/api/accounts", accounts);
 app.use("/email", email);
 
 app.get("/", (req, res) => {
